@@ -42,7 +42,8 @@ namespace Sat.Recruitment.Api
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Paramo API V1");
+                c.RoutePrefix = string.Empty;
             });
             app.UseRouting();
 
