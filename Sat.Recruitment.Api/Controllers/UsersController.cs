@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Sat.Recruitment.Api.Model;
 using Sat.Recruitment.Api.Services.interfaces;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace Sat.Recruitment.Api.Controllers
@@ -21,10 +18,20 @@ namespace Sat.Recruitment.Api.Controllers
             this._iUserService = iUserService;
         }
 
-        [HttpPost("/create-user")]
-        public async Task<Result> CreateUser(UserDto user)
+        [HttpPost]
+        public async Task<Result> CreateUser([Required][FromBody]UserDto user)
         {
-            return await this._iUserService.Create(user);
+            try
+            {
+                return await this._iUserService.Create(user);
+            }
+            catch (System.Exception ex)
+            {
+                return new Result() {
+                    IsSuccess = false,
+                    Messages = ex.Message
+                };
+            }
         }
 
     }

@@ -20,7 +20,7 @@ namespace Sat.Recruitment.Api.Services.implementations
         /// Maps UserDto to User
         /// <param name="userDto"></param>
         /// </summary>
-        private User MapDtoToUser(UserDto userDto)
+        public User MapDtoToUser(UserDto userDto)
         {
 
             var parsedEnum = Enum.TryParse(userDto.UserType, true, out UserType userType);

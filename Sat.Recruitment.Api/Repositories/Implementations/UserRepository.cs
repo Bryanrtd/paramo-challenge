@@ -48,14 +48,14 @@ namespace Sat.Recruitment.Api.Repositories.Implementations
 
         }
 
+        /// <summary>
+        /// Add user to file
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public async Task AddUser(User user){
             string[] userArr = {user.Name, user.Email, user.Phone, user.Address, user.UserType.ToString(), user.Money.ToString()};
             await File.AppendAllTextAsync(_filePath, string.Join(',', userArr) + Environment.NewLine);
         }
-
-
-
-
-
     }
 }
